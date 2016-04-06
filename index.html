@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+	<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Oswald:300' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Homemade+Apple' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,700,500italic,700italic' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/normalize.min.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+	<!-- Fixed Header -->
+<!-- 	<header>
+	</header> -->
+	<!-- View container where pages are rendered -->
+	<div id="view"></div>
+	<!-- Fixed Footer -->
+	<footer>
+	</footer> -->
+
+	<!-- Template for Archive page -->
+	<script type="text/html" id="tpl_archive">
+		<div class="page" id="archive">
+			<div id="archiveHeader">ARCHIVES<img src="images\logo-small.png"></div>
+			<div id = "imageBlock">
+			</div>
+		</div>
+	</script>
+
+	<!-- Template for Projects page -->
+	<script type="text/html" id="tpl_project">
+		<div class="page" id="project">
+			<br>
+			<div id="mainImg"></div>
+			<div class="projectTitle"><h4><%= title %></h4></div>
+			<!-- <div id="tagline"><h4><%= tagline %></h4></div> -->
+			<div id="description"><%= description %></div>
+			<br>
+			<div id="otherImg"></div>
+			<br>
+			<button class="backBtn"><- back</button>
+			<br><br>
+		</div>
+	</script>
+
+	<!-- Template for Audio page -->
+	<script type="text/html" id="tpl_audio">
+		<div class="page" id="audio">
+		<button class="archiveBtn"></button>
+		<div class="mainImg"> <%= mainImg %> </div>
+		<button class="playAudio">PLAY</button>
+		</div>
+	</script>
+
+	<!-- Template for Multiple Choice page -->
+	<script type="text/html" id="tpl_multipleChoice">
+		<div class="page" id="multipleChoice">
+		<button class="archiveBtn"></button>
+		<div class="mainImg"> <%= mainImg %> </div>
+		<div id="questionText"> <%= questionText %> </div>
+		<div id="choiceBtns"></div>
+		</div>
+	</script>
+
+	<!-- Template for Fill in the Blank page -->
+	<script type="text/html" id="tpl_questionBlank">
+		<div class="page" id="questionBlank">
+		<button class="archiveBtn"></button>
+		<div class="mainImg"> <%= mainImg %> </div>
+		<form>
+		<div id="questionText"> <%= questionText %> </div>
+		<input type="text"></input>
+		<button class="submit">SUBMIT</button>
+		</form>
+		</div>
+	</script>
+
+	<!-- Template for No Info page -->
+	<script type="text/html" id="tpl_noInfo">
+		<div class="page" id="noInfo">
+		<button class="archiveBtn"></button>
+		<div class="mainImg"> <%= mainImg %> </div>
+		<div id="questionText"> <%= text %> </div>
+		</div>
+	</script>
+
+	<!-- Template for No Info page -->
+	<script type="text/html" id="tpl_text">
+		<div class="page" id="text">
+		<button class="archiveBtn"></button>
+		<div class="textImg"> <%= mainImg %> </div>
+		<div id="article">
+		<div id="headerText"> <%= header %> </div>
+		<div id="paragraphText"> <%= paragraph %> </div>
+		<div id="linkText"><%= link %></div>
+		</div>
+		
+		</div>
+	</script>
+
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/underscore-min.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
