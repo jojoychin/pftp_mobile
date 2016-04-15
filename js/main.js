@@ -97,50 +97,14 @@ app.init = function() {
 // A function where we detect the change of '#' on the browser address field
 var hashRouter = function() {
 
-    var render = {
-        archive: function() {
-            var findHeight = $('#nav').height();
-            console.log(findHeight);
-            console.log('rendered work');
-            // This is how we compile underscore template
-            // Usually, it may be applied to other template brands as well
-            var tplToCompile = $('#tpl_archive').html();
-            var compiled = _.template(tplToCompile, {
-                title: 'JOANNA CHIN',
-                date: new Date(),
-                projects: work
-            });
-            $('#view').html(compiled);
-
-            for (var i in work) {
-                if (work[i].sqImage != 'blank') {
-                    var img = $('<a href=' + work[i].hash + ' id=\"' + work[i].title + '\"><img src=' + work[i].sqImage + '></a>');
-                    img.appendTo('#imageBlock');
-                }
-            }
-            window.scrollTo(0, 0);
-        },
-        about: function() {
-
-        },
-        project: function(hash) {
-
-        }
-    };
-
     $(window).off('hashchange').on('hashchange', function() {
         console.log('Current hash is ' + location.hash);
-        // if (location.hash == '#archive') {
-        //     renderArchive();
-        // } else 
-        if (location.hash == '#about') {
-            renderAbout();
-        } else {
-            renderPage(location.hash);
-            var hashNoSymbol = location.hash;
-            var tag = hashNoSymbol.replace(/\#+/g, '');
-            console.log("This is the tag: " + tag);
-        }
+
+        renderPage(location.hash);
+        var hashNoSymbol = location.hash;
+        var tag = hashNoSymbol.replace(/\#+/g, '');
+        console.log("This is the tag: " + tag);
+
         attachEvents();
     });
 };
@@ -175,53 +139,28 @@ var attachEvents = function() {
 /*
 	functions to render different pages
 */
-function renderArchive() {
-    var findHeight = $('#nav').height();
-    console.log(findHeight);
-    console.log('rendered work');
-    // This is how we compile underscore template
-    // Usually, it may be applied to other template brands as well
-    var tplToCompile = $('#tpl_archive').html();
-    var compiled = _.template(tplToCompile, {
-        title: 'JOANNA CHIN',
-        date: new Date(),
-        projects: work
-    });
-    $('#view').html(compiled);
-
-    for (var i in work) {
-        if (work[i].sqImage != 'blank') {
-            var img = $('<a href=' + work[i].hash + ' id=\"' + work[i].title + '\"><img src=' + work[i].sqImage + '></a>');
-            img.appendTo('#imageBlock');
-        }
-    }
-    window.scrollTo(0, 0);
-}
 
 var renderPage = function(hash) {
 
-    // var tempBtnText = [];
-    // var tempBtnID = [];
-    var makeImageTag = function(imgURL){
+    var makeImageTag = function(imgURL) {
         return '<img src=' + imgURL + '>';
     }
 
     var item = {};
     //if key for each item is hash...
     if (hash in work) {
-        item = $.extend({},work[hash]);
-        item.mainImg = makeImageTag(item.mainImg);
-        //item.mainImg = '<img src=' + item.mainImg + '>';
+        item = $.extend({}, work[hash]);
         console.log(value + ' matched to ' + work[hash].title); //work[i].title);
     }
     item.date = new Date();
 
+    if ('mainImg' in item) {
+        item.mainImg = makeImageTag(item.mainImg);
+    }
+
     var template = {
         create: function(templateName) {
 
-            // if (templateName in template.prep) {
-            //     template.prep[templateName]();
-            // }
             var tplToCompile = $("#tpl_" + templateName).html();
             var compiled = _.template(tplToCompile, item);
             $('#view').html(compiled);
@@ -229,7 +168,6 @@ var renderPage = function(hash) {
             if (templateName in template.addl) {
                 template.addl[templateName]();
             }
-            //return _.template(tplToCompile, item);
         },
         addl: {
             archive: function() {
@@ -253,9 +191,6 @@ var renderPage = function(hash) {
     };
 
     template.create(item.pageType);
-    // var compiled = template.create(item.pageType);
-
-    // $('#view').html(compiled);
 
     window.scrollTo(0, 0);
 
