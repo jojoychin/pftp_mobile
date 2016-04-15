@@ -113,31 +113,6 @@ var hashRouter = function() {
 var attachEvents = function() {
     console.log('Attaching Events');
 
-    // var buttons = {
-    //     'choice': {
-    //         domEl: '.choiceBtn',
-    //         event: function(e) {
-    //             value = e.target.innerHTML;
-    //             var valNoPunc = value.replace(/[.,\'-\/#!%?\^&\*;:{}=\-_`~()]+/g, '');
-    //             var valNoSpace = valNoPunc.replace(/\s+/g, '');
-    //             location.hash = '#' + valNoSpace;
-    //         }
-    //     },
-    //     'archive': {
-    //         domEl: '.archiveBtn',
-    //         event: function() {
-    //             console.log('clicked');
-    //             location.hash = '#archive';
-    //         }
-    //     },
-    //     'back': {
-    //         domEl: '.backBtn',
-    //         event: function() {
-    //             location.hash = '#work';
-    //         }
-    //     }
-    // };
-
     var buttons = {
         '.choiceBtn': function(e) {
             value = e.target.innerHTML;
@@ -159,27 +134,6 @@ var attachEvents = function() {
     for (var key in buttons) {
         $(key).off('click').on('click', buttons[key]);
     }
-
-    // project button
-    // $('.choiceBtn').off('click').on('click', function(e) {
-    //     value = e.target.innerHTML;
-    //     var valNoPunc = value.replace(/[.,\'-\/#!%?\^&\*;:{}=\-_`~()]+/g, '');
-    //     var valNoSpace = valNoPunc.replace(/\s+/g, '');
-    //     location.hash = '#' + valNoSpace;
-    // });
-
-    // $('.archiveBtn').off('click').on('click', function() {
-    //     console.log('clicked');
-    //     location.hash = '#archive';
-    // });
-
-    // $('.backBtn').off('click').on('click', function() {
-    //     location.hash = '#work';
-    // });
-
-    var findButton;
-    var elements;
-    var workImgs;
 
 };
 
