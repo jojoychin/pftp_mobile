@@ -113,22 +113,69 @@ var hashRouter = function() {
 var attachEvents = function() {
     console.log('Attaching Events');
 
+    // var buttons = {
+    //     'choice': {
+    //         domEl: '.choiceBtn',
+    //         event: function(e) {
+    //             value = e.target.innerHTML;
+    //             var valNoPunc = value.replace(/[.,\'-\/#!%?\^&\*;:{}=\-_`~()]+/g, '');
+    //             var valNoSpace = valNoPunc.replace(/\s+/g, '');
+    //             location.hash = '#' + valNoSpace;
+    //         }
+    //     },
+    //     'archive': {
+    //         domEl: '.archiveBtn',
+    //         event: function() {
+    //             console.log('clicked');
+    //             location.hash = '#archive';
+    //         }
+    //     },
+    //     'back': {
+    //         domEl: '.backBtn',
+    //         event: function() {
+    //             location.hash = '#work';
+    //         }
+    //     }
+    // };
+
+    var buttons = {
+        '.choiceBtn': function(e) {
+            value = e.target.innerHTML;
+            var valNoPunc = value.replace(/[.,\'-\/#!%?\^&\*;:{}=\-_`~()]+/g, '');
+            var valNoSpace = valNoPunc.replace(/\s+/g, '');
+            location.hash = '#' + valNoSpace;
+
+        },
+        '.archiveBtn': function() {
+            console.log('clicked');
+            location.hash = '#archive';
+
+        },
+        '.backBtn': function() {
+            location.hash = '#work';
+        }
+    };
+
+    for (var key in buttons) {
+        $(key).off('click').on('click', buttons[key]);
+    }
+
     // project button
-    $('.choiceBtn').off('click').on('click', function(e) {
-        value = e.target.innerHTML;
-        var valNoPunc = value.replace(/[.,\'-\/#!%?\^&\*;:{}=\-_`~()]+/g, '');
-        var valNoSpace = valNoPunc.replace(/\s+/g, '');
-        location.hash = '#' + valNoSpace;
-    });
+    // $('.choiceBtn').off('click').on('click', function(e) {
+    //     value = e.target.innerHTML;
+    //     var valNoPunc = value.replace(/[.,\'-\/#!%?\^&\*;:{}=\-_`~()]+/g, '');
+    //     var valNoSpace = valNoPunc.replace(/\s+/g, '');
+    //     location.hash = '#' + valNoSpace;
+    // });
 
-    $('.archiveBtn').off('click').on('click', function() {
-        console.log('clicked');
-        location.hash = '#archive';
-    });
+    // $('.archiveBtn').off('click').on('click', function() {
+    //     console.log('clicked');
+    //     location.hash = '#archive';
+    // });
 
-    $('.backBtn').off('click').on('click', function() {
-        location.hash = '#work';
-    });
+    // $('.backBtn').off('click').on('click', function() {
+    //     location.hash = '#work';
+    // });
 
     var findButton;
     var elements;
@@ -136,15 +183,13 @@ var attachEvents = function() {
 
 };
 
-/*
-	functions to render different pages
-*/
+/* functions to render different pages */
 
 var renderPage = function(hash) {
 
     var makeImageTag = function(imgURL) {
         return '<img src=' + imgURL + '>';
-    }
+    };
 
     var item = {};
     //if key for each item is hash...
@@ -194,6 +239,6 @@ var renderPage = function(hash) {
 
     window.scrollTo(0, 0);
 
-}
+};
 
 app.init();
