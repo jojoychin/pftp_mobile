@@ -6,13 +6,13 @@ var work = {
     "#archive": {
         "title": "archive",
         "pageType": "archive",
-        "templateType": "tpl_archive",
+        //"templateType": "tpl_archive",
         "nonArchiveItem": true
     },
     "#bottle": {
         "title": "bottle",
         "hash": "#bottle",
-        "templateType": "tpl_multipleChoice",
+        //"templateType": "tpl_multipleChoice",
         "pageType": "multipleChoice",
         "mainImg": "images/bottle.png",
         "questionText": "What is the liquid inside?",
@@ -24,23 +24,63 @@ var work = {
     "#other": {
         "title": "other",
         "hash": "#other",
-        "templateType": "tpl_questionBlank",
+        //"templateType": "tpl_questionBlank",
         "pageType": "questionBlank",
         "mainImg": "images/bottle.png",
         "questionText": "What is it then?",
         "category": "matahari_mailing1",
+        "nextpage": "#ink",
         "sqImage": "blank",
+    },
+    "#makeup": {
+        "title": "makeup",
+        "hash": "#makeup",
+        //"templateType": "tpl_questionBlank",
+        "pageType": "audio",
+        "mainImg": "images/bottle.png",
+        "category": "matahari_mailing1",
+        "sqImage": "blank",
+        "audioFile": "audio/bottle.mp3"
+    },
+    "#poison": {
+        "title": "poison",
+        "hash": "#poison",
+        //"templateType": "tpl_questionBlank",
+        "pageType": "text",
+        "mainImg": "images/bottle.png",
+        "header": "This is not poison, but...",
+        "paragraph": "In 1899, when Zelle (who later became Mata Hari) and MacLeod’s children fell violently ill from complications relating to the treatment of syphilis contracted from their parents, though the family claimed they were poisoned by an irate servant. Their daughter, Jeanne survived, but their firstborn son, Norman died. Some sources[6] maintain that one of MacLeod's enemies may have poisoned a supper to kill both of their children. Many note this as a possible catalyst for the disintegration of their marriage as letters from Zelle to her father indicate that she blamed MacLeod for the supposed poisoning.",
+        "link": "Read more at wikipedia.org",
+        "category": "matahari_mailing1",
+        "sqImage": "blank"
+    },
+        "#ink": {
+        "title": "ink",
+        "hash": "#ink",
+        //"templateType": "tpl_questionBlank",
+        "pageType": "text",
+        "mainImg": "images/bottle.png",
+        "header": "Invisible Ink",
+        "paragraph": "In 1899, when Zelle (who later became Mata Hari) and MacLeod’s children fell violently ill from complications relating to the treatment of syphilis contracted from their parents, though the family claimed they were poisoned by an irate servant. Their daughter, Jeanne survived, but their firstborn son, Norman died. Some sources[6] maintain that one of MacLeod's enemies may have poisoned a supper to kill both of their children. Many note this as a possible catalyst for the disintegration of their marriage as letters from Zelle to her father indicate that she blamed MacLeod for the supposed poisoning.",
+        "link": "Read more at wikipedia.org",
+        "category": "matahari_mailing1",
+        "sqImage": "blank"
     },
     "#letter1": {
         "title": "letter1",
         "hash": "#letter1",
+        "pageType": "audio",
+        "audioFile": "audio/letter1.mp3",
         "category": "matahari_mailing1",
+        "mainImg": "images/letter.jpeg",
         "sqImage": "images/letter1_circle.png",
     },
     "#jewelry": {
         "title": "jewelry",
         "hash": "#jewelry",
-        "templateType": "tpl_audio",
+        //"templateType": "tpl_audio",
+        "pageType": "audio",
+        "audioFile":"audio/jewelry.mp3",
         "category": "matahari_mailing1",
         "sqImage": "images/earring_circle.png",
         "mainImg": "images/earring_audio.png"
@@ -49,16 +89,17 @@ var work = {
     "#sachet": {
         "title": "sachet",
         "hash": "#sachet",
-        "templateType": "tpl_audio",
+        //"templateType": "tpl_audio",
         "pageType": "audio",
         "category": "matahari_mailing1",
         "sqImage": "images/sachet_circle.png",
-        "audioImg": "images/sachet"
+        "mainImg": "images/sachet_audio.png",
+        "audioFile": "audio/sachet.mp3"
     },
     "#money": {
         "title": "money",
         "hash": "#money",
-        "templateType": "tpl_noInfo",
+        //"templateType": "tpl_noInfo",
         "pageType": "noInfo",
         "text": "No info available at this time.",
         "category": "matahari_mailing1",
@@ -74,7 +115,7 @@ var work = {
     "#photo": {
         "title": "photo",
         "hash": "#photo",
-        "templateType": "tpl_text",
+        //"templateType": "tpl_text",
         "pageType": "text",
         "header": "Mata Hari",
         "paragraph": "Margaretha Geertruida \"Margreet\" MacLeod (7 August 1876 – 15 October 1917), better known by the stage name Mata Hari, was a Dutch Frisian exotic dancer and courtesan who was convicted of being a spy[1] and executed by firing squad in France under charges of espionage for Germany during World War I.[2].",
@@ -105,7 +146,7 @@ var hashRouter = function() {
         var tag = hashNoSymbol.replace(/\#+/g, '');
         console.log("This is the tag: " + tag);
 
-        attachEvents();
+        attachEvents(location.hash);
     });
 };
 
@@ -126,9 +167,17 @@ var attachEvents = function() {
             location.hash = '#archive';
 
         },
-        '.backBtn': function() {
-            location.hash = '#work';
+        // '.backBtn': function() {
+        //     location.hash = '#work';
+        // },
+
+        '.submit': function() {;
+            location.hash = '#ink';
         }
+
+        // '.playAudio': function () {
+        //     //audio.Play()
+        // }
     };
 
     for (var key in buttons) {
@@ -141,11 +190,21 @@ var attachEvents = function() {
 
 var renderPage = function(hash) {
 
+    var startAudio = null;
+    var audioFiles = [];
+
+    //function to make image tag
     var makeImageTag = function(imgURL) {
         return '<img src=' + imgURL + '>';
     };
 
+    //function to make audio tag
+    var makeAudioTag = function(audioURL) {
+        return '<audio controls=\"controls\"><source src=\"'+audioURL+'\" /></audio>'
+    };
+
     var item = {};
+    
     //if key for each item is hash...
     if (hash in work) {
         item = $.extend({}, work[hash]);
@@ -157,12 +216,18 @@ var renderPage = function(hash) {
         item.mainImg = makeImageTag(item.mainImg);
     }
 
+    if ('audioFile' in item){
+        item.audioFile = makeAudioTag(item.audioFile);
+    }
+
     var template = {
         create: function(templateName) {
 
             var tplToCompile = $("#tpl_" + templateName).html();
             var compiled = _.template(tplToCompile, item);
             $('#view').html(compiled);
+
+
 
             if (templateName in template.addl) {
                 template.addl[templateName]();
@@ -190,7 +255,7 @@ var renderPage = function(hash) {
     };
 
     template.create(item.pageType);
-
+    // console.log("what is image?: "+item.mainImg);
     window.scrollTo(0, 0);
 
 };

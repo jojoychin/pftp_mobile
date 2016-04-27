@@ -54,7 +54,8 @@
 		<div class="page" id="audio">
 		<button class="archiveBtn"></button>
 		<div class="mainImg"> <%= mainImg %> </div>
-		<button class="playAudio">PLAY</button>
+		<div class="audioFile"> <%= audioFile %> </div>
+		<!-- <button class="playAudio">PLAY</button> -->
 		</div>
 	</script>
 
@@ -73,10 +74,10 @@
 		<div class="page" id="questionBlank">
 		<button class="archiveBtn"></button>
 		<div class="mainImg"> <%= mainImg %> </div>
-		<form>
+		<form id="fillInBlank">
 		<div id="questionText"> <%= questionText %> </div>
-		<input type="text"></input>
-		<button class="submit">SUBMIT</button>
+		<input type="text" id="answer"></input>
+		<button type="submit" class="submit">SUBMIT</button>
 		</form>
 		</div>
 	</script>
