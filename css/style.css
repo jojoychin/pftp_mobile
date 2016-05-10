@@ -261,7 +261,7 @@ header {
 			overflow: hidden;
 		}
 
-		/*.playAudio {
+		.audioButton {
 			position: relative;
 			margin-right: 50vw;
 			margin-left: 40vw;
@@ -270,7 +270,7 @@ header {
 			border: solid #B8B8B8 1px;
 			background-color: rgba(255,255,255,0.2);
 			color: #B8B8B8;
-		}*/
+		}
 
 		.audioFile {
 			margin: auto;
