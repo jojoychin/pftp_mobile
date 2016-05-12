@@ -3,10 +3,127 @@ var app = {};
 
 var value = '';
 var work = {
+    "#introquestion": {
+        "title": "introquestion",
+        "hash": "#introquestion",
+        "category": "matahari_mailing1",
+        "pageType": "multipleChoice",
+        "mainImg": "images/bottle.png",
+        "questionText": "Do you know who sent the post?",
+        "buttons": ["yes", "no"],
+        "sqImage": "blank",
+    },
+    "#yes": {
+        "title": "yes",
+        "hash": "#yes",
+        "category": "matahari_mailing1",
+        "pageType": "questionBlank",
+        "mainImg": "images/bottle.png",
+        "questionText": "Who sent the post?",
+        "sqImage": "blank",
+        "nextBool": true,
+        "submitBtn": {
+            "class": "submit",
+            "text": "submit",
+            "target": "matahari"
+        },
+        "btn": [{
+            "text": "Hint",
+            "target": "no"
+        }]
+    },
+    "#no": {
+        "title": "no",
+        "hash": "#no",
+        "category": "matahari_mailing1",
+        "pageType": "noInfo",
+        "mainImg": "images/bottle.png",
+        "sqImage": "blank",
+        "text": "Ah, well then you may want to do a little research before accessing the Archives.",
+        "nextBool": true,
+        "btn": [{
+            "text": "Hint 1",
+            "target": "hint1"
+        }, {
+            "text": "Hint 2",
+            "target": "hint2"
+        }, {
+            "text": "Hint 3",
+            "target": "hint3"
+        }],
+    },
+    "#hint1": {
+        "title": "hint1",
+        "hash": "#hint1",
+        "category": "matahari_mailing1",
+        "pageType": "noInfo",
+        "mainImg": "images/bottle.png",
+        "sqImage": "blank",
+        "text": "Relisten to the audio and look at the objects. Try searching for keywords like \"female traitor\" or \"prison.\"",
+        "nextBool": true,
+        "btn": [{
+            "text": "Back",
+            "target": "no"
+        }, {
+            "text": "Guess",
+            "target": "yes"
+        }],
+    },
+    "#hint2": {
+        "title": "hint2",
+        "hash": "#hint2",
+        "category": "matahari_mailing1",
+        "pageType": "noInfo",
+        "mainImg": "images/bottle.png",
+        "sqImage": "blank",
+        "text": "Perhaps you read in her letter, \"sold secrets to Germany.\" What does this make her?",
+        "nextBool": true,
+        "btn": [{
+            "text": "Back",
+            "target": "no"
+        }, {
+            "text": "Guess",
+            "target": "yes"
+        }],
+    },
+    "#hint3": {
+        "title": "hint3",
+        "hash": "#hint3",
+        "category": "matahari_mailing1",
+        "pageType": "noInfo",
+        "mainImg": "images/bottle.png",
+        "sqImage": "blank",
+        "text": "She mentions in her message some \"wartime secrets.\" Perhaps try that in combination with other search terms.",
+        "nextBool": true,
+        "btn": [{
+            "text": "Back",
+            "target": "no"
+        }, {
+            "text": "Guess",
+            "target": "yes"
+        }],
+    },
+    "#matahari": {
+        "title": "matahari",
+        "hash": "#matahari",
+        "pageType": "noInfo",
+        "mainImg": "images/photo_guimet.jpg",
+        // "header": "Mata Hari",
+        "text": "Your first mailing is from Mata Hari, a Dutch-born exotic dancer and courtesan who was accused of espionage during WWI. The French believed that she was responsible for selling wartime secrets to the Germans, but others believe that her only crime was being a scandalous woman in a time when tensions were high. <br><br>Is she guilty?<br><br>Your journey beings in the",
+        "link": " <a href=\"#archive\">ARCHIVES</a>.",
+        "category": "matahari_mailing1",
+        "sqImage": "blank",
+        "nextBool": true,
+        "btn": [{
+            "text": "ARCHIVES",
+            "target": "archive"
+        }]
+    },
     "#archive": {
         "title": "archive",
+        "hash": "#archive",
         "pageType": "archive",
-        "nonArchiveItem": true
+        "nonArchiveItem": true,
     },
     "#bottle": {
         "title": "bottle",
@@ -14,7 +131,6 @@ var work = {
         "pageType": "multipleChoice",
         "mainImg": "images/bottle.png",
         "questionText": "What is the liquid inside?",
-        //"buttonClass": ["poisonBtn", "makeupBtn", "otherBtn"],
         "buttons": ["poison", "makeup", "other"],
         "category": "matahari_mailing1",
         "sqImage": "images/bottle_circle.png",
@@ -28,11 +144,26 @@ var work = {
         "category": "matahari_mailing1",
         // "nextpage": "#ink",
         "sqImage": "blank",
-        "btn": {
-            "class":"submit",
+        "submitBtn": {
+            "class": "submit",
             "text": "SUBMIT",
-            "target": "ink"
+            "target": "otherink"
         }
+    },
+    "#otherink": {
+        "title": "otherink",
+        "hash": "#otherink",
+        "pageType": "noInfo",
+        "mainImg": "images/bottle.png",
+        "text": "It might very well be invisible ink. That's what the French accused Mata Hari of when she was arrested.<br><br> Congrats - you've unlocked additional information on invisible ink.",
+        "category": "matahari_mailing1",
+        // "nextpage": "#ink",
+        "sqImage": "blank",
+        "nextBool": true,
+        "btn": [{
+            "text": "invisible ink",
+            "target": "ink"
+        }]
     },
     "#makeup": {
         "title": "makeup",
@@ -47,10 +178,10 @@ var work = {
         "title": "poison",
         "hash": "#poison",
         "pageType": "text",
-        "mainImg": "images/bottle.png",
+        "mainImg": "images/bottle.jpg",
         "header": "This is not poison, but...",
         "paragraph": "In 1899, when Zelle (who later became Mata Hari) and MacLeod’s children fell violently ill from complications relating to the treatment of syphilis contracted from their parents, though the family claimed they were poisoned by an irate servant. Their daughter, Jeanne survived, but their firstborn son, Norman died. Some sources[6] maintain that one of MacLeod's enemies may have poisoned a supper to kill both of their children. Many note this as a possible catalyst for the disintegration of their marriage as letters from Zelle to her father indicate that she blamed MacLeod for the supposed poisoning.",
-        "link": "Read more at wikipedia.org",
+        "link": "Read more at <a href=\"https://en.wikipedia.org/wiki/Mata_Hari\" target=\"_blank\">wikipedia.org</a>",
         "category": "matahari_mailing1",
         "sqImage": "blank"
     },
@@ -61,13 +192,13 @@ var work = {
         "mainImg": "images/french_invisibleink.jpg",
         "header": "Declassified WWI formula",
         "paragraph": "This German invisible ink formula, written in French and translated, is described in an Office of Navel Intelligence document dated June 1918. This shows that the French managed to crack the German formula during World War One.<br><br>Kept classified for 95 years, the document shows that invisible ink was made by mixing compressed aspirin with pure water...",
-        "link": "Read more at wired.com",
+        "link": "Read more at <a href=\"https://www.wired.com/2011/04/revealed-skin-messages-invisible-ink-and-other-secret-wwi-spycraft/\" target=\"_blank\">wired.com</a>",
         "category": "matahari_mailing1",
         "sqImage": "blank",
         "nextBool": true,
         "btn": [{
-            "class":"next",
-            "text": "next",
+            "class": "next",
+            "text": ">",
             "target": "ink2"
         }]
     },
@@ -78,17 +209,17 @@ var work = {
         "mainImg": "images/artofman_invisibleink.jpg",
         "header": "The History of Invisible Ink",
         "paragraph": "In April of this year, the CIA released its oldest classified documents and the last from the World War I era. Dating from 1917 and 1918, the papers mainly contain recipes for “secret writing”–instructions for agents of the Office of Naval Intelligence (the CIA did not yet exist) on how make invisible ink. Such a low-tech espionage method may seem quaint today, but invisible ink was once a very serious business and an important tool in a spy’s bag of tricks...",
-        "link": "Read more at artofmanliness.com",
+        "link": "Read more at <a href=\"http://www.artofmanliness.com/2011/09/09/man-knowledge-the-history-of-invisible-ink/\" target=\"_blank\">artofmanliness.com</a>",
         "category": "matahari_mailing1",
         "sqImage": "blank",
         "nextBool": true,
         "btn": [{
             "class": "previous",
-            "text": "previous",
+            "text": "<",
             "target": "ink"
         }, {
-            "class":"next",
-            "text": "next",
+            "class": "next",
+            "text": ">",
             "target": "ink3"
         }]
     },
@@ -98,7 +229,7 @@ var work = {
         "pageType": "audio",
         "audioFile": "audio/letter1.mp3",
         "category": "matahari_mailing1",
-        "mainImg": "images/letter.jpeg",
+        "mainImg": "images/letter_close.jpg",
         "sqImage": "images/letter1_circle.png",
     },
     "#jewelry": {
@@ -108,7 +239,7 @@ var work = {
         "audioFile": "audio/jewelry.mp3",
         "category": "matahari_mailing1",
         "sqImage": "images/earring_circle.png",
-        "mainImg": "images/earring_audio.png"
+        "mainImg": "images/earring.jpg"
 
     },
     "#sachet": {
@@ -117,7 +248,7 @@ var work = {
         "pageType": "audio",
         "category": "matahari_mailing1",
         "sqImage": "images/sachet_circle.png",
-        "mainImg": "images/sachet_audio.png",
+        "mainImg": "images/sachet.jpg",
         "audioFile": "audio/sachet.mp3",
         "btn": {
             "text": "Play"
@@ -127,16 +258,19 @@ var work = {
         "title": "money",
         "hash": "#money",
         "pageType": "noInfo",
-        "text": "No info available at this time.",
+        "text": "Franc notes from circa 1900. No other info available at this time.",
         "category": "matahari_mailing1",
         "sqImage": "images/money_circle.png",
-        "mainImg": "images/money.png"
+        "mainImg": "images/money.jpg"
     },
     "#key": {
         "title": "key",
         "hash": "#key",
+        "pageType": "noInfo",
+        "text": "These types of keys were characteristic of locked jewelry boxes in the early 1900s. No other info available at this time.",
         "category": "matahari_mailing1",
-        "sqImage": "images/key_circle.png"
+        "sqImage": "images/key_circle.png",
+        "mainImg": "images/key.jpg"
     },
     "#photo": {
         "title": "photo",
@@ -166,7 +300,7 @@ app.init = function() {
     hashRouter();
     // Refresh hash
     location.hash = '';
-    location.hash = '#archive';
+    location.hash = '#introquestion';
 };
 
 // A function where we detect the change of '#' on the browser address field
@@ -187,10 +321,13 @@ var attachEvents = function(_item) {
     console.log('Attaching Events');
 
     var buttons = {
+        '.genericBtn': function(){
+            location.hash = '#' + this.id;
+        },
         '.choiceBtn': function(e) {
             console.log(e.target);
             console.log("ID is: " + this.id);
-            value = this.id;//e.target.id;
+            value = this.id; //e.target.id;
             var valNoPunc = value.replace(/[.,\'-\/#!%?\^&\*;:{}=\-_`~()]+/g, '');
             var valNoSpace = valNoPunc.replace(/\s+/g, '');
             location.hash = '#' + valNoSpace;
@@ -200,15 +337,23 @@ var attachEvents = function(_item) {
         },
         '.next': function() {
             console.log("submitting response");
-            location.hash = '#'+this.id;
+            location.hash = '#' + this.id;
         },
         '.previous': function() {
             console.log("submitting response");
-            location.hash = '#'+this.id;
+            location.hash = '#' + this.id;
         },
         '.submit': function() {
+
+            //change other to ink after ink info has been uncovered
+            if (this.id == "ink") {
+                if ('#bottle' in work) {
+                    work['#bottle'].buttons[2] = 'ink';
+                }
+            }
+
             console.log("submitting response");
-            location.hash = '#'+this.id;
+            location.hash = '#' + this.id;
         },
         '.playAudio': function() {
             console.log("Attempting to play audio");
@@ -236,6 +381,11 @@ var attachEvents = function(_item) {
         $(key).off('click').on('click', buttons[key]);
     }
 
+    $("#audioFile").bind("ended", function() {
+        $('.audioButton').text('PLAY').addClass('playAudio').removeClass('stopAudio');
+        attachEvents();
+    });
+
 };
 
 /* functions to render different pages */
@@ -260,7 +410,9 @@ var renderPage = function(hash) {
 
     item.date = new Date();
 
+    var bgImg;
     if ('mainImg' in item) {
+        bgImg = item.mainImg;
         item.mainImg = makeImageTag(item.mainImg);
     }
 
@@ -271,12 +423,15 @@ var renderPage = function(hash) {
             var compiled = _.template(tplToCompile, item);
             $('#view').html(compiled);
 
+            //clear background image
+            $('body').css("backgroundImage", "none");
+
             if (templateName in template.addl) {
                 template.addl[templateName]();
             }
 
-            if (item.nextBool){
-                for (var i in item.btn){
+            if (item.nextBool) {
+                for (var i in item.btn) {
                     var button = template.makeButton(item.btn[i], item.btn[i].class);
                     button.appendTo('.page');
                 }
@@ -285,22 +440,17 @@ var renderPage = function(hash) {
             attachEvents(item);
         },
         makeButton: function(btnInfo, btnClass) {
-        
-            //var btnInfo = item.buttons[i];
 
-            //var btnTarget = btnInfo.text;
             if (typeof btnInfo === 'string' || btnInfo instanceof String) {
                 btnInfo = {
                     text: btnInfo
                 };
             }
 
-            //var btnClass = 
-
-            if ('class' in btnInfo){
+            if ('class' in btnInfo) {
                 btnClass = btnInfo.class;
-            }else if (btnClass === undefined){
-                btnClass = 'genericButton';
+            } else if (btnClass === undefined) {
+                btnClass = 'genericBtn';
             }
 
             if (!('target' in btnInfo)) {
@@ -329,33 +479,43 @@ var renderPage = function(hash) {
                 var buttonClass = "choiceBtn";
 
                 for (var i in item.buttons) {
-                    
-                    var button = template.makeButton(item.buttons[i],buttonClass);
+
+                    var button = template.makeButton(item.buttons[i], buttonClass);
 
                     button.appendTo('#choiceBtns');
                 }
-            }, //,
+            },
             audio: function() {
                 console.log("Adding audio src " + item.audioFile);
                 $('#audioFile').attr({
                     'src': item.audioFile
                 });
+                console.log("audio background image is: " + item.backgroundImg);
+
+                //attach background image
+                $('body').css("backgroundImage", "url(" + bgImg + ")")
+                    .css("backgroundSize", "cover")
+                    .css("text-align", "center");
             },
             questionBlank: function() {
                 console.log("Adding submit btn");
 
                 var buttonClass = "submit";
 
-                var button = template.makeButton(item.btn, buttonClass);
+                var button = template.makeButton(item.submitBtn, buttonClass);
 
                 button.appendTo('#fillInBlank');
+            },
+            noInfo: function() {
+                $('body').css("backgroundImage", "url(" + bgImg + ")")
+                    .css("backgroundSize", "cover")
+                    .css("text-align", "center");
             }
         }
 
     };
 
     template.create(item.pageType);
-    // console.log("what is image?: "+item.mainImg);
     window.scrollTo(0, 0);
 };
 

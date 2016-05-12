@@ -15,44 +15,34 @@
 </head>
 <body>
 
+<!-- 	arrow icons from http://www.freepik.com/free-vector/variety-of-arrows-icons_793986.htm. Designed by Freepik -->
+
 	<!-- Fixed Header -->
 <!-- 	<header>
 	</header> -->
 	<!-- View container where pages are rendered -->
 	<div id="view"></div>
 	<!-- Fixed Footer -->
-	<footer>
-	</footer>
+<!-- 	<footer>
+	</footer> -->
 
 	<!-- Template for Archive page -->
 	<script type="text/html" id="tpl_archive">
 		<div class="page" id="archive">
-			<div id="archiveHeader">ARCHIVES<img src="images\logo-small.png"></div>
+			<div id="archiveHeader">ARCHIVES<a href="http://www.postfromthepast.net/" target="_blank"><img src="images\logo-small.png"></a></div>
 			<div id = "imageBlock">
 			</div>
-		</div>
-	</script>
-
-	<!-- Template for Projects page -->
-	<script type="text/html" id="tpl_project">
-		<div class="page" id="project">
-			<br>
-			<div id="mainImg"></div>
-			<div class="projectTitle"><h4><%= title %></h4></div>
-			<div id="description"><%= description %></div>
-			<br>
-			<div id="otherImg"></div>
-			<br>
-			<button class="backBtn"><- back</button>
-			<br><br>
+			<footer>
+			<button id="about">About</button>
+			</footer>
 		</div>
 	</script>
 
 	<!-- Template for Audio page -->
 	<script type="text/html" id="tpl_audio">
 		<div class="page" id="audio">
-		<button class="archiveBtn"></button>
-		<div class="mainImg"> <%= mainImg %> </div>
+		<button class="archiveBtn">ARCHIVES</button>
+		<!-- <div class="mainImg"> <%= mainImg %> </div> -->
 		<!-- <div id="audioFile" class="audioFile"> -->
 		<audio preload="auto" id="audioFile" class="audioFile"></audio>
 		<!-- </div> -->
@@ -63,7 +53,7 @@
 	<!-- Template for Multiple Choice page -->
 	<script type="text/html" id="tpl_multipleChoice">
 		<div class="page" id="multipleChoice">
-		<button class="archiveBtn"></button>
+		<button class="archiveBtn">ARCHIVES</button>
 		<div class="mainImg"> <%= mainImg %> </div>
 		<div id="questionText"> <%= questionText %> </div>
 		<div id="choiceBtns"></div>
@@ -73,7 +63,7 @@
 	<!-- Template for Fill in the Blank page -->
 	<script type="text/html" id="tpl_questionBlank">
 		<div class="page" id="questionBlank">
-		<button class="archiveBtn"></button>
+		<button class="archiveBtn">ARCHIVES</button>
 		<div class="mainImg"> <%= mainImg %> </div>
 		<form id="fillInBlank">
 		<div id="questionText"> <%= questionText %> </div>
@@ -86,16 +76,15 @@
 	<!-- Template for No Info page -->
 	<script type="text/html" id="tpl_noInfo">
 		<div class="page" id="noInfo">
-		<button class="archiveBtn"></button>
-		<div class="mainImg"> <%= mainImg %> </div>
-		<div id="questionText"> <%= text %> </div>
+		<button class="archiveBtn">ARCHIVES</button>
+		<div id="noInfoText"> <%= text %> </div>
 		</div>
 	</script>
 
-	<!-- Template for No Info page -->
+	<!-- Template for Text page -->
 	<script type="text/html" id="tpl_text">
 		<div class="page" id="text">
-		<button class="archiveBtn"></button>
+		<div id="archiveHeader2"><button class="archiveBtn">ARCHIVES</button></div>
 		<div class="textImg"> <%= mainImg %> </div>
 		<div id="article">
 		<div id="headerText"> <%= header %> </div>
