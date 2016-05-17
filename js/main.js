@@ -8,7 +8,7 @@ var work = {
         "hash": "#introquestion",
         "category": "matahari_mailing1",
         "pageType": "multipleChoice",
-        "mainImg": "images/bottle.png",
+        "mainImg": "images/photo_1910_dark.jpg",
         "questionText": "Do you know who sent the post?",
         "buttons": ["yes", "no"],
         "sqImage": "blank",
@@ -18,7 +18,7 @@ var work = {
         "hash": "#yes",
         "category": "matahari_mailing1",
         "pageType": "questionBlank",
-        "mainImg": "images/bottle.png",
+        "mainImg": "images/photo_1910_dark.jpg",
         "questionText": "Who sent the post?",
         "sqImage": "blank",
         "nextBool": true,
@@ -37,7 +37,7 @@ var work = {
         "hash": "#no",
         "category": "matahari_mailing1",
         "pageType": "noInfo",
-        "mainImg": "images/bottle.png",
+        "mainImg": "images/photo_1910_dark.jpg",
         "sqImage": "blank",
         "text": "Ah, well then you may want to do a little research before accessing the Archives.",
         "nextBool": true,
@@ -57,7 +57,7 @@ var work = {
         "hash": "#hint1",
         "category": "matahari_mailing1",
         "pageType": "noInfo",
-        "mainImg": "images/bottle.png",
+        "mainImg": "images/photo_1910_dark.jpg",
         "sqImage": "blank",
         "text": "Relisten to the audio and look at the objects. Try searching for keywords like \"female traitor\" or \"prison.\"",
         "nextBool": true,
@@ -74,7 +74,7 @@ var work = {
         "hash": "#hint2",
         "category": "matahari_mailing1",
         "pageType": "noInfo",
-        "mainImg": "images/bottle.png",
+        "mainImg": "images/photo_1910_dark.jpg",
         "sqImage": "blank",
         "text": "Perhaps you read in her letter, \"sold secrets to Germany.\" What does this make her?",
         "nextBool": true,
@@ -91,7 +91,7 @@ var work = {
         "hash": "#hint3",
         "category": "matahari_mailing1",
         "pageType": "noInfo",
-        "mainImg": "images/bottle.png",
+        "mainImg": "images/photo_1910_dark.jpg",
         "sqImage": "blank",
         "text": "She mentions in her message some \"wartime secrets.\" Perhaps try that in combination with other search terms.",
         "nextBool": true,
@@ -106,23 +106,33 @@ var work = {
     "#matahari": {
         "title": "matahari",
         "hash": "#matahari",
-        "pageType": "noInfo",
-        "mainImg": "images/photo_guimet.jpg",
-        // "header": "Mata Hari",
-        "text": "Your first mailing is from Mata Hari, a Dutch-born exotic dancer and courtesan who was accused of espionage during WWI. The French believed that she was responsible for selling wartime secrets to the Germans, but others believe that her only crime was being a scandalous woman in a time when tensions were high. <br><br>Is she guilty?<br><br>Your journey beings in the",
-        "link": " <a href=\"#archive\">ARCHIVES</a>.",
+        "pageType": "text",
+        "mainImg": "images/photo_1910.jpg",
+        "header": "Mata Hari",
+        "paragraph": "Your first mailing is from Mata Hari, a Dutch-born exotic dancer and courtesan who was accused of espionage during WWI. The French believed that she was responsible for selling wartime secrets to the Germans, but others believe that her only crime was being a scandalous woman in a time when tensions were high.",
+        "link": "Is she guilty?<br><br>Your journey begins in the <a href=\"#archive\">ARCHIVES</a>.",
         "category": "matahari_mailing1",
         "sqImage": "blank",
-        "nextBool": true,
-        "btn": [{
-            "text": "ARCHIVES",
-            "target": "archive"
-        }]
+        // "nextBool": true,
+        // "btn": [{
+        //     "text": "ARCHIVES",
+        //     "target": "archive"
+        // }]
     },
     "#archive": {
         "title": "archive",
         "hash": "#archive",
         "pageType": "archive",
+        "nonArchiveItem": true,
+    },
+    "#about": {
+        "title": "about",
+        "hash": "#about",
+        "pageType": "about",
+        "mainImg": "images/postbox.jpg",
+        "header": "Post from the Past",
+        "paragraph": "Post from the Past (PFTP) is a mysterious monthly subscription box service in which you receive packages from people in the past. Hear their voices and uncover their stories through an immersive physical and digital journey.",
+        "link": "Sign up to beta test at <a href=\"http://postfromthepast.net\" target=\"_blank\">postfromthepast.net</a>",
         "nonArchiveItem": true,
     },
     "#bottle": {
@@ -155,7 +165,7 @@ var work = {
         "hash": "#otherink",
         "pageType": "noInfo",
         "mainImg": "images/bottle.png",
-        "text": "It might very well be invisible ink. That's what the French accused Mata Hari of when she was arrested.<br><br> Congrats - you've unlocked additional information on invisible ink.",
+        "text": "It might very well be invisible ink. That's certainly what the French thought she was found with this bottle of suspicious liquid.<br><br> Congrats - you've unlocked additional information on invisible ink.",
         "category": "matahari_mailing1",
         // "nextpage": "#ink",
         "sqImage": "blank",
@@ -335,6 +345,9 @@ var attachEvents = function(_item) {
         '.archiveBtn': function() {
             location.hash = '#archive';
         },
+        '.aboutBtn': function() {
+            location.hash = '#about';
+        },
         '.next': function() {
             console.log("submitting response");
             location.hash = '#' + this.id;
@@ -484,6 +497,12 @@ var renderPage = function(hash) {
 
                     button.appendTo('#choiceBtns');
                 }
+
+                //attach background image
+                $('body').css("backgroundImage", "url(" + bgImg + ")")
+                    .css("backgroundSize", "cover")
+                    .css("text-align", "center");
+
             },
             audio: function() {
                 console.log("Adding audio src " + item.audioFile);
@@ -505,6 +524,10 @@ var renderPage = function(hash) {
                 var button = template.makeButton(item.submitBtn, buttonClass);
 
                 button.appendTo('#fillInBlank');
+                
+                $('body').css("backgroundImage", "url(" + bgImg + ")")
+                    .css("backgroundSize", "cover")
+                    .css("text-align", "center");
             },
             noInfo: function() {
                 $('body').css("backgroundImage", "url(" + bgImg + ")")

@@ -33,7 +33,7 @@
 			<div id = "imageBlock">
 			</div>
 			<footer>
-			<button id="about">About</button>
+			<button class="aboutBtn" id="about">About</button>
 			</footer>
 		</div>
 	</script>
@@ -41,7 +41,7 @@
 	<!-- Template for Audio page -->
 	<script type="text/html" id="tpl_audio">
 		<div class="page" id="audio">
-		<button class="archiveBtn">ARCHIVES</button>
+	 	<button class="archiveBtn">ARCHIVES</button>
 		<!-- <div class="mainImg"> <%= mainImg %> </div> -->
 		<!-- <div id="audioFile" class="audioFile"> -->
 		<audio preload="auto" id="audioFile" class="audioFile"></audio>
@@ -54,7 +54,6 @@
 	<script type="text/html" id="tpl_multipleChoice">
 		<div class="page" id="multipleChoice">
 		<button class="archiveBtn">ARCHIVES</button>
-		<div class="mainImg"> <%= mainImg %> </div>
 		<div id="questionText"> <%= questionText %> </div>
 		<div id="choiceBtns"></div>
 		</div>
@@ -64,7 +63,6 @@
 	<script type="text/html" id="tpl_questionBlank">
 		<div class="page" id="questionBlank">
 		<button class="archiveBtn">ARCHIVES</button>
-		<div class="mainImg"> <%= mainImg %> </div>
 		<form id="fillInBlank">
 		<div id="questionText"> <%= questionText %> </div>
 		<input type="text" id="answer"></input>
@@ -85,6 +83,20 @@
 	<script type="text/html" id="tpl_text">
 		<div class="page" id="text">
 		<div id="archiveHeader2"><button class="archiveBtn">ARCHIVES</button></div>
+		<div class="textImg"> <%= mainImg %> </div>
+		<div id="article">
+		<div id="headerText"> <%= header %> </div>
+		<div id="paragraphText"> <%= paragraph %> </div>
+		<div id="linkText"><%= link %></div>
+		</div>
+		</div>
+	</script>
+
+	<!-- Template for About page -->
+	<script type="text/html" id="tpl_about">
+		<div class="page" id="text">
+		<div id="archiveHeader"><a href="#archive">ARCHIVES</a><a href="http://www.postfromthepast.net/" target="_blank"><img src="images\logo-small.png"></a></div>
+		<br>
 		<div class="textImg"> <%= mainImg %> </div>
 		<div id="article">
 		<div id="headerText"> <%= header %> </div>
