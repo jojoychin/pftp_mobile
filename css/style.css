@@ -39,6 +39,7 @@ button {
 	font-size: 1.3em;
 	/*outline: none;*/
 	/*background: rgba(255,255,255,0.2);*/
+	padding: 1.5vh 2vw 1.5vh 2vw;
 	background-color: rgba(0,0,0,0.4);
 	border: solid #B8B8B8 1px;
 	border-radius: 2px;
@@ -175,12 +176,11 @@ header {
 .archiveBtn {
 	position: relative;
 	margin-top: 1vh;
-	padding: 1vh 1vw 1vh 1vw;
 	/*height: 4vh;*/
-	width: 100vw;
-	background: transparent;
-	border: none !important;
-	/*background: rgba(0,0,0,0.2);*/
+	/*width: 100vw;*/
+	/*background: transparent;*/
+	/*border: none !important;*/
+	background: rgba(0,0,0,0.2);
 	border: solid white 0.1em;
 	color: white;
 	/*color: #A7A7A7;*/
@@ -280,6 +280,7 @@ header {
 	text-transform: uppercase;
 	outline: solid 1px #818181;
 	background: rgba(255,255,255,0.2);
+	padding: 1vh 1vw 1vh 1vw;
 }
 
 		/* AUDIO PAGES */

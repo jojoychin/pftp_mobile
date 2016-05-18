@@ -309,8 +309,15 @@ app.init = function() {
     // deploy hash listener
     hashRouter();
     // Refresh hash
+    // if (location.hash == ''){
+    //     location.hash = '';
+    //     location.hash = '#archive';
+    // } else if (location.hash == '#introquestion'){
+    //     location.hash = '';
+    //     location.hash = '#introquestion';
+    // }
     location.hash = '';
-    location.hash = '#introquestion';
+    location.hash = '#archive';
 };
 
 // A function where we detect the change of '#' on the browser address field
@@ -524,7 +531,7 @@ var renderPage = function(hash) {
                 var button = template.makeButton(item.submitBtn, buttonClass);
 
                 button.appendTo('#fillInBlank');
-                
+
                 $('body').css("backgroundImage", "url(" + bgImg + ")")
                     .css("backgroundSize", "cover")
                     .css("text-align", "center");
